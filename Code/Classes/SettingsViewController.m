@@ -15,6 +15,8 @@
 
 @implementation SettingsViewController
 
+@synthesize ibDelegate;
+
 - (void) setup {
 	self.title = settingsdatasource.title;
 	settingsdatasource.viewcontroller = self;
@@ -24,6 +26,14 @@
 	 
 	 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:settingsdatasource action:@selector(save:)];
 	 */
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super initWithCoder:decoder]) {
+        settingsdatasource = [[SettingsMetadataSource alloc] initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"Root" ofType:@"plist"]];
+		[self setup];
+    }
+    return self;
 }
 
 - (id) initWithConfigFile:(NSString *)configfile {
@@ -58,6 +68,10 @@
 	self.tableView.delegate = settingsdatasource;
 	self.tableView.dataSource = settingsdatasource;
 	
+    // Assign ibDelegate as data source's delegate if extant
+    if (ibDelegate != nil)
+        settingsdatasource.delegate = ibDelegate;
+    
 	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

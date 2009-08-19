@@ -18,10 +18,14 @@ The standard full-screen settings view.
  */
 @interface SettingsViewController : UITableViewController {
 	SettingsMetadataSource *settingsdatasource;
+    NSObject* ibDelegate;
 }
 
 /** The object that stores the actual values of the settings. */
 @property (nonatomic,readonly) NSObject *settings;
+
+/** Delegate assigned via Interface Builder */
+@property (nonatomic,readonly) IBOutlet NSObject* ibDelegate;
 
 /** 
  Loads the configuration from the plist file, and uses a custom object for the settings values.
