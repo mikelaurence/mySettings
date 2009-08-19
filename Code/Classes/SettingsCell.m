@@ -201,13 +201,13 @@
 		[changedsettings setValue:newvalue forKey:key];
 	}
     
+	value = [newvalue retain];
+    
     /* Send a cellDidSetValue method unless this was the initial set by SettingsMetadataSource */
     if (!initialSet) {
         if (delegate && [delegate respondsToSelector:@selector(cellDidSetValue:)])
         [delegate cellDidSetValue:self];
-    }    
-    
-	value = [newvalue retain];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

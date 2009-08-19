@@ -9,6 +9,8 @@
  *    Kåre Morstøl (NotTooBad Software) - initial API and implementation
  *******************************************************************************/ 
 
+#import "SettingsCellProtocol.h"
+
 @class SettingsCell;
 
 /** Delegates of SettingsMetadataSource implement this */
@@ -39,7 +41,7 @@
 - (void) cellWillAppear:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexpath;
 
 /** Called whenever a new value is set in any cell */
-- (void) cellDidSetValue:(SettingsCell *)cell;
+- (void) cellDidSetValue:(UITableViewCell<SettingsCellProtocol> *)cell;
 
 - (id) objectForNewRow;
 
