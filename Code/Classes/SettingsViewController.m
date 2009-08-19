@@ -31,7 +31,7 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super initWithCoder:decoder]) {
         settingsdatasource = [[SettingsMetadataSource alloc] initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"Root" ofType:@"plist"]];
-		[self setup];
+        [self setup];
     }
     return self;
 }
