@@ -11,6 +11,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SettingsCellProtocol.h"
+#import "SettingsDelegate.h"
 
 /**
  Superclass for all cells in the settings view.
@@ -30,6 +31,7 @@
 	NSMutableDictionary *changedsettings;	/**< Cache for unsaved changes to settings */
 	NSDictionary *configuration;				/**< The configuration of the cell, taken from the plist */
 	
+    NSObject<SettingsDelegate> *delegate;   /**< Reference to data source for delegate callbacks */
 }
 
 @property (nonatomic, readonly) UILabel *titlelabel;
@@ -40,6 +42,8 @@
  Subclasses can set up their editors here. Typically this is a picker view or a number pad.
  */
 @property (nonatomic, readonly) UIView *editorview;
+
+@property (nonatomic, retain) NSObject<SettingsDelegate> *delegate;
 
 /** 
  Factory method for all cells. 

@@ -20,7 +20,7 @@
 
 @implementation SettingsCell
 
-@synthesize configuration, changedsettings, value, titlelabel, valueview;
+@synthesize configuration, changedsettings, value, titlelabel, valueview, delegate;
 
 + (id) cellFromConfiguration:(NSDictionary *)configuration {
 	NSString *settingstype = [configuration objectForKey:@"Type"];
@@ -191,14 +191,22 @@
 
 /** Sets the value of the setting. */
 - (void) setValue:(NSObject *)newvalue {
-	NSAssert(newvalue, @"newvalue = nil"); 
+	NSAssert(newvalue, @"newvalue = nil");
+    bool initialSet = value == nil;
 	
 	/* If value is nil then this value is being set by the SettingsMetadataSource before the setting is shown for the first time. If it's not nil, then the setting has been changed and we need to store it in changedsettings */
-	if (value) {
+	if (initialSet) {
 		[value release];
 		NSString *key = [configuration valueForKey:@"Key"];
 		[changedsettings setValue:newvalue forKey:key];
 	}
+    
+    /* Send a cellDidSetValue method unless this was the initial set by SettingsMetadataSource */
+    if (!initialSet) {
+        if (delegate && [delegate respondsToSelector:@selector(cellDidSetValue:)])
+        [delegate cellDidSetValue:self];
+    }    
+    
 	value = [newvalue retain];
 }
 

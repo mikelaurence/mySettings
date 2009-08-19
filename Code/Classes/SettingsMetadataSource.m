@@ -196,7 +196,8 @@
 	if (cell == nil) {
 		cell = [SettingsCell cellFromConfiguration:configuration];
 		cell.changedsettings = changedsettings;
-		
+		((SettingsCell*) cell).delegate = delegate;
+        
 		if ([cell respondsToSelector:@selector(cellDidInit)])
 			[cell cellDidInit];
 		

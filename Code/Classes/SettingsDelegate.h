@@ -38,6 +38,9 @@
  */
 - (void) cellWillAppear:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexpath;
 
+/** Called whenever a new value is set in any cell */
+- (void) cellDidSetValue:(SettingsCell *)cell;
+
 - (id) objectForNewRow;
 
 @end

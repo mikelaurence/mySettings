@@ -15,7 +15,7 @@
 
 @implementation SettingsViewController
 
-@synthesize ibDelegate;
+@synthesize ibDelegate, settingsdatasource;
 
 - (void) setup {
 	self.title = settingsdatasource.title;

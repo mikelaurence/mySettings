@@ -24,6 +24,8 @@ The standard full-screen settings view.
 /** The object that stores the actual values of the settings. */
 @property (nonatomic,readonly) NSObject *settings;
 
+@property (nonatomic,readonly) SettingsMetadataSource *settingsdatasource;
+
 /** Delegate assigned via Interface Builder */
 @property (nonatomic,readonly) IBOutlet NSObject* ibDelegate;
 
